@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "data logger server->periodically notifies sensor nodes, and wait for the logging responses",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dareenh",
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "mqtt": "^4.0.0",
+    "sqlite3": "^5.0.0"
+  }
+}
