@@ -71,7 +71,7 @@ mqttClient.init(MQTT_BROKER_ADDR, LOG_TOPIC, mqttRecvHandler); // default subscr
 // Cron job - publish MQTT message "LOG"
 // - asks IoT nodes to log their reading + timestamp hourly
 // - send the current timestamp, which will be sent back by MCU
-const mqttLogJob = new CronJob("*/15 * * * * *", function () {
+const mqttLogJob = new CronJob("0 */10 * * * *", function () {
   // mqttClient.send("LOG" + "/" + new Date().toISOString());
   mqttClient.send("LOG", CONTROL_TOPIC);
 });
@@ -79,7 +79,7 @@ const mqttLogJob = new CronJob("*/15 * * * * *", function () {
 const {
   sqliteRelogToMongo,
 } = require("./api/controllers/devices/relogHomeD_sqlite.js");
-const mqttBackupLogJob = new CronJob("7 * * * * *", function () {
+const mqttBackupLogJob = new CronJob("15 */30 * * * *", function () {
   // mqttClient.send("LOG" + "/" + new Date().toISOString());
   sqliteRelogToMongo();
 });
