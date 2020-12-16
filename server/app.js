@@ -22,12 +22,14 @@ const express = require("express");
 var bodyParser = require("body-parser");
 var CronJob = require("cron").CronJob;
 
+var cors = require("cors");
 const app = express();
 
 /*
 middlewares
 */
 // response parsers
+app.use(cors());
 app.use(bodyParser.json()); // app/json
 app.use(bodyParser.urlencoded({ extended: true })); // app/xwww-form-urlencoded
 
@@ -84,8 +86,8 @@ const mqttBackupLogJob = new CronJob("15 */30 * * * *", function () {
   sqliteRelogToMongo();
 });
 // Start Cron jobs
-mqttLogJob.start();
-mqttBackupLogJob.start();
+// mqttLogJob.start();
+// mqttBackupLogJob.start();
 
 // exports the app
 module.exports = app;

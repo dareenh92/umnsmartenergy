@@ -24,4 +24,4 @@ var loggerSchema = new mongoose.Schema({
 });
 
 // Export the schema 'homeDSchema' as model 'HomeD'
-module.exports = mongoose.model("Logger", loggerSchema, "homeD");
+module.exports = mongoose.model("Logger", loggerSchema, "home_7");

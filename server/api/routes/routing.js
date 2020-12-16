@@ -6,9 +6,16 @@ Router for APIs, match req and resp
 var express = require("express");
 var router = express.Router();
 
+// import functions
+const getReports = require("../reports").getReports;
+const getReport = require("../reports").getReport;
+
 router.get("/logs", (req, res) => {
-  console.log("logs accessed");
-  res.status(200).send("logs accessed");
+  getReports(req, res);
+});
+
+router.get("/log", (req, res) => {
+  getReport(req, res);
 });
 
 module.exports = router;
