@@ -3,23 +3,26 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import LiveReading from "./LiveReading";
-import Historical from "./Historical";
+import Analytics from "./Analytics";
+import LongText from "./LongText";
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
+  content: {
     flexGrow: 1,
-    // padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.default,
   },
 }));
 
-const Dashboard = () => {
+const DashboardView = () => {
   const classes = useStyles();
+
   return (
-    <div id="dashboardContent">
+    <div id="dashboardViewContent">
       {/* <LiveReading /> */}
-      <Historical />
+      <Analytics />
+      {/* <LongText /> */}
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardView;

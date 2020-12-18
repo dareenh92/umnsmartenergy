@@ -8,7 +8,7 @@ class Graph extends Component {
   }
 
   plotChart() {
-    let { logs, logs2 } = this.props;
+    let { metric, logs, logs2 } = this.props;
 
     console.log({ logs });
     console.log({ logs2 });
@@ -19,17 +19,19 @@ class Graph extends Component {
         labels: logs.map((d) => d.ts),
         datasets: [
           {
-            label: "Logger3-Temperature",
+            label: "Logger3",
             data: logs.map((d) => {
-              return { x: new Date(d.ts), y: d.temp };
+              let value = metric === "temperature" ? d.temp : d.hum;
+              return { x: new Date(d.ts), y: value };
             }),
             fill: false,
             borderColor: "blue",
           },
           {
-            label: "Logger4-Temperature",
+            label: "Logger4",
             data: logs2.map((d) => {
-              return { x: new Date(d.ts), y: d.temp };
+              let value = metric === "temperature" ? d.temp : d.hum;
+              return { x: new Date(d.ts), y: value };
             }),
             fill: false,
             borderColor: "red",
@@ -38,6 +40,7 @@ class Graph extends Component {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         elements: {
           point: {
             radius: 0,
@@ -50,7 +53,8 @@ class Graph extends Component {
               time: { unit: "day" },
             },
           ],
-          yAxes: [{ ticks: { min: 27.5 } }],
+          // hardcoded
+          yAxes: [{ ticks: { min: metric === "temperature" ? 27 : 40 } }],
         },
       },
     });
@@ -67,11 +71,7 @@ class Graph extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <canvas ref={this.chartRef} />
-      </div>
-    );
+    return <canvas ref={this.chartRef} />;
   }
 }
 
